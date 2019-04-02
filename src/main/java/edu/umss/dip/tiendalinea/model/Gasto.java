@@ -14,7 +14,7 @@ public class Gasto extends ModelBase implements Serializable {
 
     //
     @ManyToOne
-    @JoinColumn(name = "gasto_id", insertable = true)
+    @JoinColumn(name = "equipo_id", insertable = true)
     @JsonIgnore
     private Equipo equipo;
 

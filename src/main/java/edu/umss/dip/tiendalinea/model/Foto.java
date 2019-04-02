@@ -1,6 +1,7 @@
 package edu.umss.dip.tiendalinea.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import edu.umss.dip.tiendalinea.dto.FotoDto;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,8 +9,8 @@ import java.io.Serializable;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "foto")
-public class Foto extends ModelBase implements Serializable {
-    private String nombre;
+public class Foto extends ModelBase<FotoDto> implements Serializable {
+    @Lob
     private Byte[] image;
 
     //muchas fotos pertenecen a un equipo
@@ -18,19 +19,19 @@ public class Foto extends ModelBase implements Serializable {
     @JsonIgnore
     private Equipo equipo;
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public Byte[] getImage() {
         return image;
     }
-
     public void setImage(Byte[] image) {
         this.image = image;
     }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
 }
