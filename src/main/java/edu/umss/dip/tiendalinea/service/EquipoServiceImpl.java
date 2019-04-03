@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 @Service
 public class EquipoServiceImpl extends GenericServiceImpl<Equipo> implements EquipoService {
@@ -38,5 +39,15 @@ public class EquipoServiceImpl extends GenericServiceImpl<Equipo> implements Equ
     @Override
     public void actualizarEstado(Equipo equipo) {
         equipoRepository.updateEstado(equipo.getId(), equipo.getEstado());
+    }
+
+    @Override
+    public List<String> getCategorias() {
+        return equipoRepository.getCategorias();
+    }
+
+    @Override
+    public List<Equipo> getEquiposByCategoria(String categoria) {
+        return equipoRepository.getEquiposByCategoria(categoria);
     }
 }

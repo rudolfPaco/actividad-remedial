@@ -32,6 +32,18 @@ public class EquipoController extends GenericController<Equipo, EquipoDto> {
         return super.getAll();
     }
 
+    @Path("/categorias")
+    @GET
+    public List<String> getCategorias() {
+        return equipoService.getCategorias();
+    }
+
+    @GET
+    @Path("/byCategoria/{categoria}")
+    public List<EquipoDto> getEquiposbyCategoria(@PathParam("categoria") String categoria) {
+        return toDto(equipoService.getEquiposByCategoria(categoria));
+    }
+
     @PUT
     @Path("/update/estado")
     public EquipoDto update(@RequestBody EquipoDto element) {
@@ -39,6 +51,7 @@ public class EquipoController extends GenericController<Equipo, EquipoDto> {
         equipoService.actualizarEstado(toModel(equipoDto));
         return equipoDto;
     }
+
 
     @Path("/{id}/image")
     @POST
